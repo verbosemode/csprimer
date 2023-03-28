@@ -1,0 +1,17 @@
+(lang dune 3.5)
+(name csprimer_varint)
+(generate_opam_files true)
+(source (github verbosemode/csprimer))
+(authors "Jochen Bartl <jochen@verbosemo.de>")
+(maintainers "Jochen Bartl <jochen@verbosemo.de>")
+(license ISC)
+(documentation "https://verbosemode.github.io/csprimer/bits_and_bytes/varint")
+(package
+ (name csprimer_varint)
+ (synopsis "csprimer varint exercise")
+ (description "csprimer varint exercise")
+ (depends
+  (ocaml (>= 4.08.0))
+  integers
+  (alcotest :with-test)
+  (odoc :with-doc)))

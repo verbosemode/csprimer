@@ -1,0 +1,4 @@
+(library
+ (name csprimer_varint)
+ (public_name csprimer_varint)
+ (libraries integers))
