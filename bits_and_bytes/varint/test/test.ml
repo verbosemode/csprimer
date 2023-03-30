@@ -27,10 +27,34 @@ let test_decode () =
     (Csprimer_varint.decode
        (Bytes.of_string "\xff\xff\xff\xff\xff\xff\xff\xff\xff\x01"))
 
+let test_roundtrip () =
+  let test_cases =
+    [
+      "0";
+      "51";
+      "150";
+      "999";
+      "2049";
+      "52342";
+      "11231412";
+      "111111111141111";
+      "18446744073709551615";
+    ]
+  in
+  let encode_decode i =
+    Alcotest.(check test_uint64)
+      (Printf.sprintf "round trip encode / decode %s" i)
+      (UInt64.of_string i)
+      Csprimer_varint.(encode (UInt64.of_string i) |> decode)
+  in
+  List.iter encode_decode test_cases
+
 let () =
   let open Alcotest in
   run "varint"
     [
       ("encode", [ test_case "encode" `Quick test_encode ]);
       ("decode", [ test_case "decode" `Quick test_decode ]);
+      ( "roundtrip_test",
+        [ test_case "round trip encode decode" `Quick test_roundtrip ] );
     ]
