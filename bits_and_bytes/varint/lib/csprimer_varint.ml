@@ -3,10 +3,10 @@ open Unsigned.UInt64.Infix
 
 exception Malformed_data of string
 
-let get_uint64_payload i = i land of_int 0x7f
-let get_payload i = Int.(logand i 0x7f)
-let get_cont_bit i = Int.(logand i 0x80) = 0x80
-let set_cont_bit i = i lor of_int 0x80
+let get_uint64_payload i = i land of_int 0b0111_1111
+let get_payload i = Int.(logand i 0b0111_1111)
+let get_cont_bit i = Int.(logand i 0b1000_0000) = 0b1000_0000
+let set_cont_bit i = i lor of_int 0b1000_0000
 let ( > ) x y = compare x y > 0
 
 let encode i =
