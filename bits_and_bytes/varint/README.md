@@ -3,7 +3,6 @@
 * Variable width integers
 * uint64 -> 1-10 bytes
 * https://protobuf.dev/programming-guides/encoding/#varints
-* TODO decode should throw exception on Bytes > 10
 * TODO Qcheck tests
 
 ## Implementation
@@ -32,10 +31,3 @@ Hex 1001 0110
  10010110                // Concatenate.
  128 + 16 + 4 + 2 = 150  // Interpret as integer.
 ```
-
-## TODO Stretch goals
-
-If you are looking for a stretch goal, you could:
-
-    Support decoding of multiple adjacent varints
-    Understand and implement protobuf's sintN type using ZigZag encoding

@@ -1,0 +1,2 @@
+Support decoding of multiple adjacent varints +BitsAndBytes +varint @stretchgoal
+Understand and implement protobuf's sintN type using ZigZag encoding +BitsAndBytes +varint @stretchgoal
