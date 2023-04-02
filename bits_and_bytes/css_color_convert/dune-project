@@ -1,0 +1,18 @@
+(lang dune 3.0)
+(name css_color_convert)
+(generate_opam_files true)
+(source (github verbosemode/csprimer))
+(authors "Jochen Bartl <jochen@verbosemo.de>")
+(maintainers "Jochen Bartl <jochen@verbosemo.de>")
+(license ISC)
+(documentation "https://verbosemode.github.io/csprimer/bits_and_bytes/css_color_convert")
+(package
+ (name css_color_convert)
+ (synopsis "csprimer css color convert exercise")
+ (description "csprimer css color convert exercise")
+ (depends
+  (ocaml (>= 4.08.0))
+  integers
+  re
+  (alcotest :with-test)
+  (odoc :with-doc)))
