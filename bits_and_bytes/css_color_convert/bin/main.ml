@@ -19,22 +19,25 @@ let uint32_of_hex_string s si sj =
  * - aa of 00 is a regular RGB value
  *)
 let hexstr_to_rgb s =
-  let i = ref Unsigned.UInt32.zero in
   let slen = String.length s in
-  let left_shift_i = ref 24 in
   let si, sj, step_width =
     match slen with
-    | 3 | 4 -> ref 0, ref 0, 1
-    | 6 | 8 -> ref 0, ref 1, 2
+    | 3 | 4 -> 0, 0, 1
+    | 6 | 8 -> 0, 1, 2
     | _ -> raise (Mailformed_data s)
-  in 
-  while !sj < slen; do
-    i := !i lxor (uint32_of_hex_string s !si !sj lsl !left_shift_i);
-    si := Int.(add !si step_width);
-    sj := Int.(add !sj step_width);
-    left_shift_i := Int.(sub !left_shift_i 8)
-  done;
-  !i
+  in
+  let rec aux i si sj left_shift_i =
+    if sj >= slen then
+      i
+    else (
+      let i = i lxor (uint32_of_hex_string s si sj lsl left_shift_i) in
+      aux i
+        Int.(add si step_width)
+        Int.(add sj step_width)
+        Int.(sub left_shift_i 8)
+    )
+  in
+  aux zero si sj 24
 
 let alpha_float_of_int i = Printf.sprintf "%.5f" (float_of_int i /. 255.)
 
