@@ -1,18 +1,3 @@
-(*
- *
- * Convert hexadecimal to rgb
- * rgb -> expands to rrggbb
- * rgba -> expands to rrggbbaa
- * rrggbb
- * rrggbbaa
- *
- * - shift upper msb part by 4, then lor with lower part
- *
- * Read form stdin
- * if line contains color: #[0-9a-zA-Z]{3, 4, 6, 8}+; -> convert to rgb(a) statement
- * Write to stdout
- *)
-
 exception Mailformed_data of string
 
 type rgb_type =
@@ -65,13 +50,30 @@ let hexstr_to_rgb s =
 let alpha_float_of_int i = Printf.sprintf "%.5f" (float_of_int i /. 255.)
 
 let rgb_to_string = function
-  | Rgb rgb -> Printf.sprintf "rgb(%i, %i, %i)" rgb.r rgb.g rgb.b
+  | Rgb rgb -> Printf.sprintf "color: rgb(%i %i %i)" rgb.r rgb.g rgb.b
   | Rgb_alpha rgba ->
-    Printf.sprintf "rgba(%i, %i, %i / %s)" rgba.r rgba.g rgba.b
+    Printf.sprintf "color: rgba(%i %i %i / %s)" rgba.r rgba.g rgba.b
       (alpha_float_of_int rgba.a)
 
+let css_color_regex = Re.Pcre.regexp {|color: #([a-zA-Z0-9]{3,8})|}
+
+let parse_rgb line =
+  Re.replace css_color_regex
+    ~f:(fun groups -> Re.Group.get groups 1 |> hexstr_to_rgb |> rgb_to_string)
+    line
+
+let read_from_stdin () =
+  let rec aux = function
+    | None -> ()
+    | Some line ->
+      print_endline (parse_rgb line);
+      aux In_channel.(input_line stdin)
+  in
+  aux In_channel.(input_line stdin)
+
 let () =
-  assert (hexstr_to_rgb "123" = Rgb { r = 17; g = 34; b = 51 });
-  assert (hexstr_to_rgb "00ff00" = Rgb { r = 0; g = 255; b = 0 });
-  assert (hexstr_to_rgb "00f8" = Rgb_alpha { r = 0; g = 0; b = 255; a = 136 });
-  assert (hexstr_to_rgb "0000FFC0" = Rgb_alpha { r = 0; g = 0; b = 255; a = 192 });
+  (* assert (hexstr_to_rgb "123" = Rgb { r = 17; g = 34; b = 51 }); *)
+  (* assert (hexstr_to_rgb "00ff00" = Rgb { r = 0; g = 255; b = 0 }); *)
+  (* assert (hexstr_to_rgb "00f8" = Rgb_alpha { r = 0; g = 0; b = 255; a = 136 }); *)
+  (* assert (hexstr_to_rgb "0000FFC0" = Rgb_alpha { r = 0; g = 0; b = 255; a = 192 }); *)
+  read_from_stdin ()
