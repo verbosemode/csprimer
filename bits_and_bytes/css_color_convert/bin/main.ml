@@ -66,10 +66,13 @@ let read_from_stdin () =
   let rec aux = function
     | None -> ()
     | Some line ->
-      print_endline (parse_rgb line);
+      (* Using stdout explicitly instead of print_endline / printf *)
+      let line = String.concat "" [ parse_rgb line; "\n" ] in
+      Out_channel.(output_string stdout line);
       aux In_channel.(input_line stdin)
   in
-  aux In_channel.(input_line stdin)
+  aux In_channel.(input_line stdin);
+  Out_channel.(flush stdout)
 
 let () =
   (* assert (hexstr_to_rgb "123" = Rgb { r = 17; g = 34; b = 51 }); *)
