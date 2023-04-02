@@ -12,6 +12,8 @@ bug-reports: "https://github.com/verbosemode/csprimer/issues"
 depends: [
   "dune" {>= "3.0"}
   "ocaml" {>= "4.08.0"}
+  "integers"
+  "re"
   "alcotest" {with-test}
   "odoc" {with-doc}
 ]

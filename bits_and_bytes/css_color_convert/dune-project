@@ -12,6 +12,7 @@
  (description "csprimer css color convert exercise")
  (depends
   (ocaml (>= 4.08.0))
+  integers
   re
   (alcotest :with-test)
   (odoc :with-doc)))
