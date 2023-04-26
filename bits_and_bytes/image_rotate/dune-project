@@ -1,0 +1,16 @@
+(lang dune 3.5)
+(name image_rotate)
+(generate_opam_files true)
+(source (github verbosemode/csprimer))
+(authors "Jochen Bartl <jochen@verbosemo.de>")
+(maintainers "Jochen Bartl <jochen@verbosemo.de>")
+(license ISC)
+(documentation "https://verbosemode.github.io/csprimer/bits_and_bytes/image_rotate")
+(package
+ (name image_rotate)
+ (synopsis "Some random library")
+ (description "A longer description about some random library")
+ (depends
+  (ocaml (>= 4.08.0))
+  (alcotest :with-test)
+  (odoc :with-doc)))

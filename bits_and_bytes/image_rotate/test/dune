@@ -1,0 +1,4 @@
+(test
+  (name test)
+  (deps teapot.bmp rotated.bmp stretch-goal.bmp)
+  (libraries alcotest image_rotate))
