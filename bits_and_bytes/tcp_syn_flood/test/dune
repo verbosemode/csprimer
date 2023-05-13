@@ -1,0 +1,4 @@
+(test
+  (name test)
+  (deps synflood.pcap)
+  (libraries alcotest tcp_syn_flood))

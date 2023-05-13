@@ -1,0 +1,9 @@
+(executable
+  (public_name tcp_syn_flood)
+  (name main)
+  (libraries
+    integers
+    ppx_deriving
+    )
+  (preprocess
+   (pps ppx_deriving.show)))
