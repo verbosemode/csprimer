@@ -14,8 +14,12 @@
 * DIB header
 * ...
 
+### Pixel array
+
+* size of row -> multiple of 4
+
 ## Links
 
 * https://en.wikipedia.org/wiki/BMP_file_format
-* https://upload.wikimedia.org/wikipedia/commons/7/75/BMPfileFormat.svg
+* https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/BMPfileFormat.svg/983px-BMPfileFormat.svg.png
 * https://learn.microsoft.com/en-us/previous-versions//dd183376(v=vs.85)

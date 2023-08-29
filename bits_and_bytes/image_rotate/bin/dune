@@ -1,6 +1,6 @@
 (executable
   (public_name image_rotate)
   (name main)
-  (libraries integers)
+  (libraries hex integers)
   (preprocess
    (pps ppx_deriving.show)))
