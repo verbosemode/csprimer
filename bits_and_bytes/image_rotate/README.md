@@ -18,6 +18,13 @@
 
 * size of row -> multiple of 4
 
+## Stretch goals
+
+* rotate a rectangle bitmap
+* flip the image
+* change colors
+* rotate by n degrees
+
 ## Links
 
 * https://en.wikipedia.org/wiki/BMP_file_format
