@@ -1,5 +1,3 @@
-exception Malformed_data of string
-
 let bmp_file_header_size = 14
 
 let get_uint16_le s pos =

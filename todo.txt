@@ -2,3 +2,4 @@ Support decoding of multiple adjacent varints +BitsAndBytes +varint @stretchgoal
 Understand and implement protobuf's sintN type using ZigZag encoding +BitsAndBytes +varint @stretchgoal
 Two's complement implementation +BitsAndBytes
 Truncate grapheme clusters. example: family of four +BitsAndBytes @stretchgoal
+Rotate rectangel image +BitsAndBytes @stretchgoal
